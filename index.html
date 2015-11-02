@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+
+	<head>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+		<script src='./ThreeUI.js'></script>
+		<script>
+		var three = new ThreeUI('#box');
+		var layer = new ThreeUI.Layer({name: 'l1'});
+		three.addLayer(layer)
+
+		layer.open3d = true;
+
+		var c1 = new ThreeUI.Container({name:'c1'});
+		var c2 = new ThreeUI.Container({name:'c2'});
+		c1.background = "red";
+		c1.color = 'white';
+		c1.width = c1.height = "300px";
+		layer.add(c1)
+
+		c2.background = 'blue';
+		c2.width = c2.height = '300px';
+		layer.add(c2)
+
+		c1.position.set('10rem','10rem','10rem');
+		c2.position.set('5rem','10rem','10rem');
+
+		c1.rotate.set(1, 0, 0, "45deg");
+		c2.rotate.set(1, 0, 0, "45deg");
+
+		c1.scale.set(1,1,10);
+		c2.scale.set(1,1,1);
+
+		c1.skew.set('10deg','40deg')
+		c1.skew.y = '20deg'
+
+
+		</script>
+</html>
