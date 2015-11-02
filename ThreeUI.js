@@ -555,17 +555,17 @@ ThreeUI.Layer.prototype.remove = function(UIContainer){
 }
 //css
 ThreeUI.Layer.prototype.addClass = function(css){
-    var scope = this;
-    if(css.indexOf(' ') > -1){
-        css = css.split(' ');
-    }else{
-        css = [css];
+    if(!css){
+        return;
     }
-    css.forEach(function(c){
-        if(!scope.hasClass(c)){
-            scope.container.className += ' '+c;
-        }
-    });
+    css = css.trim();
+    if(!this.container.className){
+        this.container.className = css;
+        return;
+    }
+    css = this.container.className + ' '+css;
+    var cssstr = JSON.parse('{"'+css.replace(/ /g,'":1,"')+'":1}');
+    this.container.className = Object.keys(cssstr).join(' ');
 }
 
 ThreeUI.Layer.prototype.removeClass = function(css){
