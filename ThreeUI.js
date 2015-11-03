@@ -18,6 +18,8 @@ function ThreeUI(sceneContainer, name){
 
     this.children = {};
 
+    ThreeUI.scene.push(this);
+
     function windowPorperfixed(){
         (!document.defaultView.getComputedStyle && document.body.currentStyle) && (document.defaultView.getComputedStyle = function(dom){return dom.currentStyle} ) ;
     }
@@ -737,6 +739,19 @@ ThreeUI.Container.prototype.eventClear = function(){
  * @param  {[type]} style [description]
  * @return {[type]}       [description]
  */
+ThreeUI.scene = [];
+ThreeUI.getObjectByName = function(name){
+    var out = null;
+    ThreeUI.scene.every(function(scene){
+        out = scene.getObjectByName(name);
+        if(out){
+            return false;
+        }
+        return true;
+    });
+    return out;
+};
+
 ThreeUI.lib = {};
 ThreeUI.lib.getStyleName = function(style){
     var _elementStyle = document.createElement('div').style;    
