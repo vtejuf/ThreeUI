@@ -172,6 +172,24 @@ ThreeUI.Layer = function(opt){
                 return this.container.style.top;
             }
         },
+        align : {
+            enumerable: true,
+            set: function(align){
+                this.container.style.textAlign = align;
+            },
+            get: function(){
+                return this.container.style.textAlign;
+            }
+        },
+        vertical : {
+            enumerable: true,
+            set: function(vertical){
+                this.container.style.verticalAlign = vertical;
+            },
+            get: function(){
+                return this.container.style.verticalAlign;
+            }
+        },
         visible : {
             enumerable: true,
             set: function(visible){
@@ -190,6 +208,33 @@ ThreeUI.Layer = function(opt){
             },
             get: function(){
                 return this.container.style.background;
+            }
+        },
+        fontSize : {
+            enumerable: true,
+            set: function(fontSize){
+                this.container.style.fontSize = fontSize;
+            },
+            get: function(){
+                return this.container.style.fontSize;
+            }
+        },
+        fontFamily : {
+            enumerable: true,
+            set: function(fontFamily){
+                this.container.style.fontFamily = fontFamily;
+            },
+            get: function(){
+                return this.container.style.fontFamily;
+            }
+        },
+        fontWeight : {
+            enumerable: true,
+            set: function(fontWeight){
+                this.container.style.fontWeight = fontWeight;
+            },
+            get: function(){
+                return this.container.style.fontWeight;
             }
         },
         color : {
