@@ -28,7 +28,7 @@ ThreeUI.prototype.addLayer = function(UILayer){
     var scope = this;
 
     if(!UILayer || !ThreeUI.Layer.prototype.isPrototypeOf(UILayer)){
-        console.log("parameter is not of type 'ThreeUI.Layer'");
+        console.error("parameter is not of type 'ThreeUI.Layer'");
         return;
     }
 
@@ -571,11 +571,11 @@ ThreeUI.Layer.prototype.add = function(UIContainer){
     var scope = this;
 
     if(!UIContainer || !ThreeUI.Container.prototype.isPrototypeOf(UIContainer)){
-        console.log("parameter is not of type 'ThreeUI.Container'");
+        console.error("parameter is not of type 'ThreeUI.Container'");
         return;
     }
     if(this.children[UIContainer.name]){
-        console.log('ThreeUI.Container.name is exists');
+        console.error('ThreeUI.Container.name is exists');
         return;
     }
 
@@ -769,7 +769,7 @@ ThreeUI.Container.prototype.eventOff = function(eventName){
     this.container.removeEventListener(eventName, this.event[eventName]);
 }
 ThreeUI.Container.prototype.eventOn = function(eventName){
-    scope.container.addEventListener(eventName, this.event[eventName]);
+    this.container.addEventListener(eventName, this.event[eventName]);
 }
 ThreeUI.Container.prototype.eventClear = function(){
     for(var i in this.event){
