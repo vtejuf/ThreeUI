@@ -28,7 +28,7 @@ ThreeUI.prototype.addLayer = function(UILayer){
     var scope = this;
 
     if(!UILayer || !ThreeUI.Layer.prototype.isPrototypeOf(UILayer)){
-        console.log("parameter is not of type 'ThreeUI.Layer'");
+        console.error("parameter is not of type 'ThreeUI.Layer'");
         return;
     }
 
@@ -92,7 +92,7 @@ ThreeUI.prototype.getObjectByName = function(name){
 ThreeUI.Layer = function(opt){
     var scope = this;
 
-    this.type = 'layer';
+    this.type = 'Layer';
 
     this.children = {};
 
@@ -275,18 +275,22 @@ ThreeUI.Layer = function(opt){
         },
         skew : {
             enumerable: true,
+            writable: true,
             value: {}
         },
         position : {
             enumerable: true,
+            writable: true,
             value: {}
         },
         rotate : {
             enumerable: true,
+            writable: true,
             value: {}
         },
         scale : {
             enumerable: true,
+            writable: true,
             value: {}
         },
         transformStyle: {
@@ -571,11 +575,11 @@ ThreeUI.Layer.prototype.add = function(UIContainer){
     var scope = this;
 
     if(!UIContainer || !ThreeUI.Container.prototype.isPrototypeOf(UIContainer)){
-        console.log("parameter is not of type 'ThreeUI.Container'");
+        console.error("parameter is not of type 'ThreeUI.Container'");
         return;
     }
     if(this.children[UIContainer.name]){
-        console.log('ThreeUI.Container.name is exists');
+        console.error('ThreeUI.Container.name is exists');
         return;
     }
 
@@ -600,6 +604,14 @@ ThreeUI.Layer.prototype.remove = function(UIContainer){
     this.container.removeChild(UIContainer.container);
     delete this.children[UIContainer.name];
 }
+/**
+ * 复制 layer (UIContainer继承)
+ */
+ThreeUI.Layer.prototype.clone = function(){
+    // return Object.create(this);
+    return new ThreeUI[this.type](Object.create(this));
+};
+
 //css
 ThreeUI.Layer.prototype.addClass = function(css){
     if(!css){
@@ -769,7 +781,7 @@ ThreeUI.Container.prototype.eventOff = function(eventName){
     this.container.removeEventListener(eventName, this.event[eventName]);
 }
 ThreeUI.Container.prototype.eventOn = function(eventName){
-    scope.container.addEventListener(eventName, this.event[eventName]);
+    this.container.addEventListener(eventName, this.event[eventName]);
 }
 ThreeUI.Container.prototype.eventClear = function(){
     for(var i in this.event){
